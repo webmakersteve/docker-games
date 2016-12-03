@@ -15,6 +15,7 @@ RUN echo 'session required pam_limits.so' >> /etc/pam.d/common-session
 
 USER steam
 
+# Install the ark server
 RUN /home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/steam/ark +app_update 376030 +quit
 
 # Query port for Steam's server browser
@@ -29,13 +30,20 @@ EXPOSE 7778
 # RCON for remote console server access (optional)
 EXPOSE 27020
 
+# Environment variables for base config
 ENV SERVER_PASSWORD=password
 ENV SERVER_NAME=docker-ark
 ENV SERVER_ADMIN_PASSWORD=admin
 
+# Set workdir to ark install directory
 WORKDIR /home/steam/ark
 
+# Mount save directory as a volume for persistence
 VOLUME /home/steam/ark/Saved
+
+# Copy config files
+
+COPY Config /home/steam/ark/Saved/Config/LinuxServer/
 
 COPY run_ark.sh .
 
