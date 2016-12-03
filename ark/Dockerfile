@@ -39,11 +39,11 @@ ENV SERVER_ADMIN_PASSWORD=admin
 WORKDIR /home/steam/ark
 
 # Mount save directory as a volume for persistence
-VOLUME /home/steam/ark/Saved
+VOLUME /home/steam/ark/ShooterGame/Saved
 
 # Copy config files
 
-COPY Config /home/steam/ark/Saved/Config/LinuxServer/
+COPY Config /home/steam/ark/ShooterGame/Saved/Config/LinuxServer/
 
 COPY run_ark.sh .
 
