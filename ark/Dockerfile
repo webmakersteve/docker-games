@@ -1,8 +1,5 @@
 FROM steam
 
-# Switch to the root user
-USER root
-
 # Change max files open
 RUN echo 'fs.file-max=100000' >> /etc/sysctl.conf
 
@@ -12,8 +9,6 @@ RUN echo '*               soft    nofile          1000000' >> /etc/security/limi
 RUN echo '*               hard    nofile          1000000' >> /etc/security/limits.conf
 
 RUN echo 'session required pam_limits.so' >> /etc/pam.d/common-session
-
-USER steam
 
 # Install the ark server
 RUN /home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/steam/ark +app_update 376030 +quit
