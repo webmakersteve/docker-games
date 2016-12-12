@@ -48,7 +48,7 @@ password={PASSWORD}
 #motd=Please don?t cut the purple trees!
 
 #Sets the folder where world files will be stored
-worldpath=/home/steam/terraria/Worlds
+worldpath=/opt/terraria/Worlds
 
 #The location of the banlist. Defaults to "banlist.txt" in the working directory.
 #banlist=banlist.txt

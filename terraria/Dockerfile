@@ -1,10 +1,9 @@
-FROM steam
-
-# Switch to the root user
-USER root
+FROM ubuntu:14.04 
 
 # Install mono libraries
-RUN apt-get -y install mono-complete
+RUN apt-get update && apt-get -y install mono-complete mono-devel
+
+RUN apt-get -y install curl
 
 # Get most recent version of the server
 RUN curl -O http://terraria.org/system/dedicated_servers/archives/000/000/025/original/terraria-server-1343.zip
@@ -14,11 +13,11 @@ RUN apt-get install -y zip
 
 RUN unzip terraria-server-1343.zip
 
-RUN mv "Dedicated Server" terraria
+RUN mv "Dedicated Server" /opt/terraria
 
 RUN rm -rf terraria-server-*
 
-WORKDIR /home/steam/terraria
+WORKDIR /opt/terraria
 
 COPY run_terraria.sh .
 COPY serverconfig.txt serverconfig.txt.base
@@ -29,7 +28,9 @@ ENV WORLD_NAME=docker-terraria
 ENV DIFFICULTY=1
 ENV PASSWORD=password
 
-VOLUME /home/steam/terraria/Worlds
+RUN mkdir Worlds
+
+VOLUME /opt/terraria/Worlds
 
 EXPOSE 7777
 

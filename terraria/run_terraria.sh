@@ -9,4 +9,4 @@ sed -i "s|{DIFFICULTY}|$DIFFICULTY|g" serverconfig.txt
 sed -i "s|{PASSWORD}|$PASSWORD|g" serverconfig.txt
 
 # Run it with that config
-mono ./Linux/TerrariaServer.exe -config ./serverconfig.txt -world /home/steam/terraria/Worlds/world1.wld
+mono ./Linux/TerrariaServer.exe -config ./serverconfig.txt -world ./Worlds/world1.wld < /dev/null
