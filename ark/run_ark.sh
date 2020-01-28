@@ -1,8 +1,7 @@
-#! /bin/bash
+#! /bin/bash -e
 
 # Remove the old config if it exists
-rm ./ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
-
+rm -f ./ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
 
 # Write specific config crap
 
@@ -14,9 +13,6 @@ sed -i "s|{SERVER_ADMIN_PASSWORD}|$SERVER_ADMIN_PASSWORD|g" ./ShooterGame/Saved/
 
 cat ./ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
 
-echo "Removing write privileges"
-
 chmod 0444 ./ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
-chattr +i ./ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
 
-./ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?listen -server -log
+exec ./ShooterGame/Binaries/Linux/ShooterGameServer TheIsland?listen -server -log
