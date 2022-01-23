@@ -6,12 +6,12 @@ RUN apt-get update && apt-get -y install mono-complete mono-devel
 RUN apt-get -y install curl
 
 # Get most recent version of the server
-RUN curl -O http://terraria.org/system/dedicated_servers/archives/000/000/025/original/terraria-server-1343.zip
+RUN curl -O https://terraria.org/api/download/pc-dedicated-server/terraria-server-1432.zip
 
 # Install zip to unpack this thing
 RUN apt-get install -y zip
 
-RUN unzip terraria-server-1343.zip
+RUN unzip terraria-server-1432.zip
 
 RUN mv "Dedicated Server" /opt/terraria
 
